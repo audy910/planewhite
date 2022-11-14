@@ -20,7 +20,7 @@ class PlaneWhiteApp(App):
 
   def on_stop(self):
     self.controller.cleanupOnExit()
-    print "Closing connections."
+    print ("Closing connections.")
 
 
 PlaneWhiteApp().run()

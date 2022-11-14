@@ -59,7 +59,7 @@ class Discovering(Widget):
 
 # basis
   def start(self):
-    print "Discovering start() called"
+    print ("Discovering start() called")
     Clock.schedule_once(self.checkIfModeIsCompleted, 1)
     
     self.last_touch = Clock.get_time()    
@@ -68,7 +68,7 @@ class Discovering(Widget):
 
     
   def stop(self):
-    print "Discovering stop() called"    
+    print ("Discovering stop() called")    
     self.reset()
     self.unpulse()
     Clock.unschedule(self.checkIfModeIsCompleted)
@@ -97,7 +97,7 @@ class Discovering(Widget):
         return
     
     if not self.all_zones_of_interest_viewedMessageSent:
-      print "All zones of interest viewed"
+      print ("All zones of interest viewed")
       self.controller.sendMessage("all_zones_of_interest_viewed") # go to next mode
       self.all_zones_of_interest_viewedMessageSent = True
 
@@ -118,7 +118,7 @@ class Discovering(Widget):
 
   def checkTimeout(self, dt=False):
     if (Clock.get_time() - self.last_touch) > TIMEOUT_DELAY:
-      print "Timeout on mode 3, sending message to switch mode."
+      print ("Timeout on mode 3, sending message to switch mode.")
       self.controller.sendMessage("all_zones_of_interest_viewed")
             
 
@@ -145,7 +145,7 @@ class Discovering(Widget):
       if shape.collide_point(*touch.pos):
         if self.children.count(self.descFor(shape)) < 1:
           # displays text box
-          print self.descFor(shape)
+          print (self.descFor(shape))
           self.add_widget(self.descFor(shape))
           shape.viewed = True
 

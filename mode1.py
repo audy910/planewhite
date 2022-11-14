@@ -78,13 +78,13 @@ class ScreenSaver(Widget):
 # basis
   def start(self, dt=False):
     # start is called on each scan, not only when changin mode.
-    print "ScreenSaver start() called"
+    print ("ScreenSaver start() called")
     self.scan_endMessageSent = False
     self.scan()
 
 
   def stop(self):
-    print "ScreenSaver stop() called"
+    print( "ScreenSaver stop() called")
     self.reset()
 
     
@@ -103,7 +103,7 @@ class ScreenSaver(Widget):
 
   def fadein(self):
     self.fadeInMessageReceived = True
-    print "ScreenSaver fadeIn() called"
+    print ("ScreenSaver fadeIn() called")
     self.points = []
     self.draw_ellipse()
 
@@ -174,7 +174,7 @@ class ScreenSaver(Widget):
     if target.x >= (self.pos[0] + self.width - target.width - NETWORK_DELAY):
       if not self.scan_endMessageSent:
         if not self.fadeInMessageReceived:
-          print "Scan reached right of screen."
+          print ("Scan reached right of screen.")
           self.controller.sendMessage("scan_end") # sync next client
           self.scan_endMessageSent = True
 
@@ -197,7 +197,7 @@ class ScreenSaver(Widget):
   def on_touch_up(self, touch):        
     if len(self.trigger_points) > TRIGGER_POINTS_THRESHOLD:
       if not self.screensaver_touchedMessageSent:
-        print "Screensaver touched. ", len(self.trigger_points)
+        print ("Screensaver touched. ", len(self.trigger_points))
         
         self.controller.sendMessage("screensaver_touched") # go to next mode
         self.screensaver_touchedMessageSent = True

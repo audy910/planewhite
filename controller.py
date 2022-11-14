@@ -29,7 +29,7 @@ class Controller(Widget):
   # messages from server arrive here
   #
   def onNewMessageFromServer(self, message):
-    print "new message from server:", message
+    print ("new message from server:", message)
 
     if message == "reset_all":
       #TODO cleanup serverIsReady hack
@@ -80,11 +80,11 @@ class Controller(Widget):
       self.currentMode.start()
 
     else:
-      print "message is not recognized:", message
+      print ("message is not recognized:", message)
 
 
   def sendMessage(self, message):
-    print "Sending message ", message
+    print ("Sending message ", message)
     self.connection.sendMessage(message)
 
 

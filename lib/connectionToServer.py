@@ -22,8 +22,8 @@ class Client(object):
     try:
       self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
       self.socket.connect(self.address)
-    except socket.error, e:
-      print "WARNING could not connect to server"
+    except socket.error:
+      print ("WARNING could not connect to server")
       return  # we return instead of exiting  see sendMessage and listen for
       #sys.exit(0)
     self.socket.setblocking(0)
@@ -37,12 +37,12 @@ class Client(object):
     #check that data is string
     if not isinstance(message, basestring):
       message = str(message)
-      print "WARNING Client.send called with non string argument"
+      print ("WARNING Client.send called with non string argument")
     #check that message ends with newline
     if message[-1] != newline:
       message = message + newline
 
-    print "sending message", message
+    print ("sending message", message)
 
     self.socket.setblocking(1)
     self.socket.send(message)
@@ -70,14 +70,14 @@ class Client(object):
     self.socket.close()
 
   def onQuit(self, signal, frame):
-    print "catched ctr-c quitting and closing socket"
+    print ("catched ctr-c quitting and closing socket")
     self.close()
     sys.exit(0)
 
 if __name__ == '__main__':
 
   def dummyCallback(message):
-    print message
+    print (message)
     pass
 
   client = Client('localhost', 4000, dummyCallback)
@@ -85,7 +85,7 @@ if __name__ == '__main__':
   client.send("LEFT\n")
 
   while 1:
-    print "update"
+    print ("update")
     client.listen()
 
 

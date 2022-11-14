@@ -57,7 +57,7 @@ class Learning(Widget):
 
 # basis
   def start(self):
-    print "Learning start() called"
+    print ("Learning start() called")
     self.add_shapes()
     
     self.last_touch = Clock.get_time()
@@ -66,7 +66,7 @@ class Learning(Widget):
     
     
   def stop(self):
-    print "Learning stop() called"
+    print ("Learning stop() called")
     self.reset()
     Clock.unschedule(self.checkTimeout)
 
@@ -89,7 +89,7 @@ class Learning(Widget):
   def checkIfModeIsCompleted(self):
     if len(self.points) >= self.max_points:
       if not self.threshold_reachedMessageSent:
-        print "Max point reached with ", str(len(self.points))
+        print ("Max point reached with ", str(len(self.points)))
         # self.reset() # should be resetted when server send top command
         self.controller.sendMessage("threshold_reached") # go to next mode
         self.threshold_reachedMessageSent = True
@@ -130,7 +130,7 @@ class Learning(Widget):
       
   def checkTimeout(self, dt=False):
     if abs(Clock.get_time() - self.last_touch) > TIMEOUT_DELAY:
-      print "Timeout on mode 2, sending message to switch mode."
+      print ("Timeout on mode 2, sending message to switch mode.")
       self.controller.sendMessage("threshold_reached")
 
         

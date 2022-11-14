@@ -52,7 +52,7 @@ class Credits(Widget):
 
 # basis
   def start(self):
-    print "Credits start() called"    
+    print ("Credits start() called")    
 
     self.background.alpha = 0.0
     self.perspective.alpha = 0.0
@@ -74,7 +74,7 @@ class Credits(Widget):
     
 
   def stop(self):
-    print "Credits stop() called"    
+    print ("Credits stop() called")    
     self.remove_widget(self.background)
     self.remove_widget(self.perspective)
     self.remove_widget(self.credits)
@@ -109,7 +109,7 @@ class Credits(Widget):
 
   def announceTheEnd(self, instance=False):
     if not self.credits_timeoutMessageSent:
-      print "This is the end."
+      print ("This is the end.")
       self.controller.sendMessage("credits_timeout") # go back to mode1, ScreenSaver
       self.credits_timeoutMessageSent = True
     
@@ -119,7 +119,7 @@ class Credits(Widget):
     # Doesn't do anything if touched within the tenth first seconds.
     if abs(Clock.get_boottime() - self.last_runtime) > TOUCH_DELAY:
       if not self.credits_touchedMessageSent:
-        print "Credits touched at, ", Clock.get_boottime()
+        print ("Credits touched at, ", Clock.get_boottime())
         self.controller.sendMessage("credits_touched") # go back to mode2, Learning
         self.credits_touchedMessageSent = True
 
